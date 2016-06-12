@@ -1,0 +1,28 @@
+From ea1fff5baf2fff43c691b13ba57f1a3fa6f0efd5 Mon Sep 17 00:00:00 2001
+From: Phong Tran <tranmanphong@gmail.com>
+Date: Sat, 11 Jun 2016 17:30:08 +0700
+Subject: [PATCH] neptune: install boards and dummyimports qml
+
+specify qml.path and add boards, dummyimports to qml.file
+
+Signed-off-by: Phong Tran <tranmanphong@gmail.com>
+---
+ neptuneui.pro | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/neptuneui.pro b/neptuneui.pro
+index fc83b8c..27871ff 100644
+--- a/neptuneui.pro
++++ b/neptuneui.pro
+@@ -3,6 +3,6 @@ TEMPLATE = subdirs
+ SUBDIRS = plugins/datasource \
+           plugins/screenManager
+ 
+-qml.files = apps modules sysui i18n am-config.yaml Main*.qml
+-
++qml.files = apps boards dummyimports modules sysui i18n am-config.yaml Main*.qml
++qml.path = $$[QT_INSTALL_DEMOS]/qt-apps-neptune-ui
+ INSTALLS += qml
+-- 
+1.9.1
+

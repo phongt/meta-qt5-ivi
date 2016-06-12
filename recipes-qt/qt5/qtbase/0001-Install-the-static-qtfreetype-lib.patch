@@ -1,0 +1,33 @@
+From 8a3adfbed20b95bfc7d8dd8d31c224c79788def8 Mon Sep 17 00:00:00 2001
+From: Laszlo Agocs <laszlo.agocs@theqtcompany.com>
+Date: Tue, 26 Jan 2016 13:11:42 +0100
+Subject: [PATCH] Install the static qtfreetype lib
+
+Modules relying on font support via platformsupport (Qt Wayland) need
+the static libqtfreetype.a. Add CONFIG+=installed to get it copied
+during make install.
+
+Task-number: QTBUG-50659
+Change-Id: Ie6252e7f2dda1dc3da97fee258b9d53b7ca349c0
+Reviewed-by: Oswald Buddenhagen <oswald.buddenhagen@theqtcompany.com>
+---
+ src/3rdparty/freetype/freetype.pro | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/3rdparty/freetype/freetype.pro b/src/3rdparty/freetype/freetype.pro
+index e9436fe..04aa3b8 100644
+--- a/src/3rdparty/freetype/freetype.pro
++++ b/src/3rdparty/freetype/freetype.pro
+@@ -3,7 +3,8 @@ TARGET = qtfreetype
+ CONFIG += \
+     static \
+     hide_symbols \
+-    exceptions_off rtti_off warn_off
++    exceptions_off rtti_off warn_off \
++    installed
+ 
+ load(qt_helper_lib)
+ 
+-- 
+1.9.1
+

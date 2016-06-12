@@ -1,0 +1,84 @@
+This README file contains information on the contents of the
+qt5-ivi layer.
+
+Please see the corresponding sections below for details.
+
+
+Dependencies
+============
+
+This layer depends on AGL distro.
+
+Patches
+=======
+
+Please submit any patches against the qt5-ivi layer to the
+xxxx mailing list (xxxx@zzzz.org) and cc: the maintainer:
+
+Maintainer: Phong Tran <tranmanphong@gmail.com>
+
+
+Table of Contents
+=================
+
+  I. Adding the qt5-ivi layer to your build
+ II. Misc
+
+
+I. Adding the qt5-ivi layer to your build
+=================================================
+
+--- replace with specific instructions for the qt5-ivi layer ---
+
+In order to use this layer, you need to make the build system aware of
+it.
+
+Assuming the qt5-ivi layer exists at the top-level of your
+yocto build tree, you can add it to the build system by adding the
+location of the qt5-ivi layer to bblayers.conf, along with any
+other layers needed. e.g.:
+
+  BBLAYERS ?= " \
+    /path/to/yocto/meta \
+    /path/to/yocto/meta-yocto \
+    /path/to/yocto/meta-yocto-bsp \
+    /path/to/yocto/meta-qt5-ivi \
+    "
+
+
+II. Misc
+========
+
+This layer is tested only with QEMU x86-64 with AGL distro (agl-image-ivi).
+
+Install the NEPTUNE UI by adding into local.conf below:
+
+IMAGE_INSTALL_append = " qt-apps-neptune-ui-examples"
+
+Use kvm for running the qemux86-64 images Refer below link
+for setting up kvm host PC (Ubuntu 14.04)
+https://help.ubuntu.com/community/KVM/Installation
+
+Find the bzImage and agl-image-ivi-qemux86-64.ext4 in the
+build/tmp/deploy/images/qemux86-64.
+
+sudo kvm -kernel bzImage \
+	 -net nic,vlan=0 \
+	 -net tap,vlan=0,ifname=tap1,script=no,downscript=no \
+	 -cpu core2duo \
+	 -hda agl-image-ivi-qemux86-64.ext4 \
+	 -vga vmware \
+	 -no-reboot \
+	 -soundhw ac97 \
+	 -m 1024 \
+	 --append "vga=0 uvesafb.mode_option=1280x800-32 root=/dev/hda mem=1024M ip=192.168.7.2::192.168.7.1:255.255.255.0 oprofile.timer=1"
+
+Run the qt-apps-neptune-ui on QEMU x86-64
+
+cd /usr/share/qt5/examples/qt-apps-neptune-ui
+dbus-launch appman -c /opt/am/config.yaml \
+	-c am-config.yaml \
+	--wayland-socket-name ivi0 \
+	--force-single-process \
+	--recreate-database \
+	MainWithCluster.qml

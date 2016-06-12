@@ -1,0 +1,26 @@
+From 3a61d039d64888a7a1dbef35c3a9858f81ed010d Mon Sep 17 00:00:00 2001
+From: Phong Tran <tranmanphong@gmail.com>
+Date: Sat, 11 Jun 2016 22:31:48 +0700
+Subject: [PATCH 2/2] screenmanger: add screenCount() implementation
+
+Signed-off-by: Phong Tran <tranmanphong@gmail.com>
+---
+ plugins/screenManager/screenmanager.cpp | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/plugins/screenManager/screenmanager.cpp b/plugins/screenManager/screenmanager.cpp
+index 42b04e3..d0c80fc 100644
+--- a/plugins/screenManager/screenmanager.cpp
++++ b/plugins/screenManager/screenmanager.cpp
+@@ -54,3 +54,8 @@ QList<QScreen *> ScreenManager::availableScreens() const
+ {
+     return QGuiApplication::screens();
+ }
++
++int ScreenManager::screenCount() const
++{
++    return QGuiApplication::screens().count();
++}
+-- 
+1.9.1
+
