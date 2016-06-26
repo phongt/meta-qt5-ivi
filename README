@@ -1,5 +1,5 @@
 This README file contains information on the contents of the
-qt5-ivi layer.
+qt5-ivi layer (For study only, not for commercial).
 
 Please see the corresponding sections below for details.
 
@@ -7,7 +7,7 @@ Please see the corresponding sections below for details.
 Dependencies
 ============
 
-This layer depends on AGL distro.
+This layer depends on AGL distro. Depends on meta-qt5 (>= 5.5)
 
 Patches
 =======
